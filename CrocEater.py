@@ -1,4 +1,5 @@
 
+
 """This a game called Croc Eater. Player moves the mouse to move the croc to eat
 the jellyfish appearing randomly on screen. Player scores 5 points for each jelly eaten.
 Game over if more than 10 jellyfish appear on the screen.
@@ -28,6 +29,11 @@ from random import randint
 
 # Maximum amount of jellyfish on screen before game terminated?
 JELLY_COUNT = 10
+# load pygame mixer for sounds and music
+pygame.mixer.init()
+# Load and play background music
+pygame.mixer.music.load("Adventure Music!.mp3")
+pygame.mixer.music.play(loops=-1)
 
 # Define Player sprite
 class Player(pygame.sprite.Sprite):
@@ -164,7 +170,9 @@ print(f"Game over! Final score: {score}")
 # I want a screen for game over final score
 # Make the mouse visible again
 pygame.mouse.set_visible(True)
-
+# stop and quit pygame mixer
+pygame.mixer.music.stop()
+pygame.mixer.quit()
 
 #Quit the game
 pygame.quit()
