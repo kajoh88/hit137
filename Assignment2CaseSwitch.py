@@ -131,7 +131,7 @@ while userchoice != 0:
                 # Move the player car
                 player_rect.y += player_direction
                 screen.blit(player_surf,player_rect)
-                # Collicion
+                # Collision
                 for car_rect in Obstacle_list:
                     if car_rect.colliderect(player_rect) or player_rect.y < 0 or player_rect.y > 380 :
                         score = display_score()
@@ -332,6 +332,8 @@ while userchoice != 0:
         # Use flip to make everything appear in window
         pygame.display.flip()
 
+        pygame.display.update()
+        clock.tick(70)
 
 
         # Make the mouse visible again
@@ -341,7 +343,7 @@ while userchoice != 0:
         pygame.mixer.quit()
 
         #Quit the game
-        #pygame.quit()
+        pygame.QUIT()
 
         
 
