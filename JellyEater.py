@@ -1,14 +1,16 @@
 
-"""This a game called Jelly Eater. Player moves the mouse to move the croc to eat
+"""This a game called Jelly Eater. Player moves the mouse to move the crocodile to eat
 the jellyfish appearing randomly on screen. Player scores 5 points for each jelly eaten.
 Game over if more than 10 jellyfish appear on the screen.
 
-I need an opening screen explaining game play and scoring
-I would like a button to play again
 Images and sounds from opengameart.org"""
 
 # Import and initialize pygame
 import pygame
+import pygame.freetype
+import pygame.draw
+from pygame.sprite import Sprite
+from pygame.rect import Rect
 
 # path for assets
 from pathlib import Path
@@ -72,10 +74,10 @@ class Jelly(pygame.sprite.Sprite):
 # Initialize the Pygame engine
 pygame.init()
 
-
 # Set up the drawing window
 screen = pygame.display.set_mode(size=[WIDTH, HEIGHT])
-pygame.display.set_caption("Jelly Eater: Move your croc with the mouse to get 5 points per jellyfish eaten. 10 Jellies onscreen means game over.")
+pygame.display.set_caption("Jelly Eater: Move your croc with the mouse to get 5 points per jellyfish eaten. 10 Jellies onscreen means game over")
+
 # initialise pygame clock
 clock = pygame.time.Clock()
 
@@ -165,9 +167,15 @@ while running:
     # Keeps 30 frames per second framerate
     clock.tick(30)
 
-# Print  final score
-print(f"Game over! Final score: {score}")
-# I want a screen for game over final score
+# Draw the final score at the bottom right
+final_score_font = pygame.font.SysFont("any_font", 36)
+final_score_block = final_score_font.render(f"Final Score: {score}", False, (246, 234, 0))
+screen.blit(final_score_block, (350, HEIGHT - 50))
+# Use flip to make everything appear in window
+pygame.display.flip()
+
+
+
 # Make the mouse visible again
 pygame.mouse.set_visible(True)
 # stop and quit pygame mixer
